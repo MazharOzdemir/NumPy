@@ -1,0 +1,167 @@
+Veri biriminde. makine öğrenmesinde, derin öğrenme de kullanılıyor.
+
+Array yapılarında yüksek performans sunuyor.
+
+Kullanılmasının bir sebebi de hızlı olması.
+
+Matrixlerde, lineer sistemlerde, rastgele sayılarda kullanılıyor.
+
+İndirmek için —> pip install numpy
+
+Anaconda da çalışıyorsak —> conda install numpy (Terminale yazıyoruz)
+
+Kodumuza import etmek için —> import numpy as np (np ismiyle import ettik)
+
+print(np.__version__) —> Numpy version kontrolü için
+
+array_ismi = np.array([1,2,3,4]) —> Array oluşturmak için
+
+print(array_ismi.shape) —> Array boyutunu (dimension) öğrenmek için
+
+print(array_ismi.dtype) —> Arrayin tipini öğrenmek için (sayıları bit olarak gösteriyor)
+
+print(array_ismi.ndim) —> Number dimension (Boyutunu öğrenmek için)
+
+print(array_ismi.size) —> Array boyutunu öğrenmek için
+
+print(array_ismi.itemsize) —> Her elemanın byte olarak boyutunu gösteriyor
+
+print(array_ismi[0]) —> Array içindeki 0. elemanı bastırmak için
+
+Arrayler arası matematksel operasyonalr da yapabiliyoruz
+
+array2 = array1 * np.array([1,2,3]) —> Array1 içindeki sayıları verdiğim array ile çarp array2 ye yaz
+
+Normal array yapıları arasında farklılıklar vardır örneğin normal arrayler de 4 rakamını ekle derse arrayin sonuna 4 sayısını ekler numpy de ise her bir sayıya 4 ekler. (append komutunu kullanarak)
+
+Numpy de yapılan matematiksel operasyonlar array içindeki elemanlara tek tek etki ediyor.
+
+Normal array yapılarında döngü kullanarak arrayleri çarpıp toplam sonucu bulurken numpy de bu:  değişken_ismi = np.dot(array1,array2) komutu ile yapılıyor. Aynı sonucu bulmanın bir diğer yolu ise:  sum1 = array1 * array2
+
+dot = np.sum(sum1)
+
+print(dot)
+
+daha kısa yolu —> dot = array1 @ array2
+
+Ortalama olarak numpy 192 kat daha hızlı.
+
+— Multidimension —
+
+array_ismi = np.array([[1,2,3], [4,5,6]] ) —> İki boyutlu
+
+1 . satır (row) 2. sütun (colums) sayısı
+
+print(array_ismi[0]) —> İlk satırı yazdırır
+
+print(array_ismi[0,0]) —> İlk satır ilk sütunu yazdırır
+
+print(array[:,0]) —> İlk sütunu yazdırıyor
+
+print(array[0,:]) —> İlk satırı yazdırıyor
+
+print(array.T) —> Transpozesini (tersini) alıyor
+
+print(np.linalg.inv(a)) —> Inverse (tersini) almak için
+
+print(np.linalg.det(array)) —> Determinantını almak için
+
+print(np.diag(a)) —> Köşegenleri göstermek için
+
+yeni_array = np.diag(array) —> Köşegenler harici 0 değerli matris oluşturur
+
+ array1 = array[0, 1:3] —> İlk satır 1 ile 3 arasındaki sütunları yazdırır
+
+array1 = array[-1 ,-1] —> Son satır son sütunda ki değeri veriyor
+
+array1 = np.array([[1,2],[3,4],[5,6]]) —> 3 dimension
+
+bool_indx = array1 > 2
+
+print(bool_indx) —> Değeri 2 den büyük olan değerler için true değerlerini döndürücek
+
+print(a[bool_index]) —> True olan değerleri yazdırır
+
+yeni_array = np.where(array>2 , array, -1) —> False olan değerleri -1 olarak döndür True olanları normal yazdır
+
+Array içinde array kullanarak istediğimiz değerlerin yazdırılmasını sağlayabiliriz:
+
+a = np.array([10, 19, 30, 41, 50, 61]) 
+
+even = np.argwhere(a%2==0).flatten()
+
+print(a[even]) —> 2 ye bölünebilen arrayleri yazdıracak
+
+array_ismi = np.arange(1,7) —> 1 den 7 ye kadar olan (7 dahil değil) bir dizi oluşturuyor
+
+array_ismi = array.reshape((2,3)) —> 2 satır 3 sütunluk dizi oluştur (1-7 arası)
+
+array_ismi = array[:, np.newaxis] —> Yeni bir eksen oluşturmak için
+
+— Concatenation (birleştirme) —
+
+array3 = np.concatenate((array1, array2)) —> İki arreyi birleştirir
+
+array3 = np.concatenate((array1, array2), axis=None) —> İki arreyi birbirinin sonuna ekler sıra halinde (eksen yok)
+
+array3 = np.hstack((array1, array2)) —> Tek sıra halinde birleştirir (yatay)
+
+array3 = np.vstack((array1, array2)) —> Satır haline getirip birleştirir (dikey) 
+
+print(array.sum(axis=None)) —> Arraylerin toplamını yazdırır
+
+print(array.sum(axis=0)) —> Sütun sütun toplama yapıp yazdırır
+
+print(array.sum(axis=1)) —> Satır satır toplama yapar
+
+print(array.mean(axis=None))  —> Arraylerin orta değerini bulur, None 0 olduğunda sütunların orta değerini 1 olduğunda ise satırların orta değerini bulur
+
+print(array.var(axis=None)) —> Varyans hesaplaması yapar
+
+print(array.std(axis=None)) —> Standart sapma bulmak için = print(np.std(array, axis=None))
+
+print(array.min(axis=None)) —> Min değeri verir (max komutu da vardır)
+
+— Datatype —
+
+array_ismi = np.array([1.0,  2.0], dtype = np.int64) —> Float sayıyı int’e çeviriyoruz (64 bit sayısını temsil ediyor)
+
+İki arrayi eşitlediğimizde hafızada aynı yeri işaret ettiklerinden birinde yaptığımız değişiklik diğerini de etkiler. Bunu önlemek için:
+
+array2 = array1.copy()
+
+— Generating Arrays —
+
+array1 = np.zeros((2,3)) —> 2 satır 3 sütunu 0 dan oluşan array oluşturuyoruz
+
+array1 = np.ones((2,3)) —> 2 satır 3 sütunu 1 den oluşan array oluşturuyoruz
+
+array1 = np.full((2,3), 5.0) —> 2 satır 3 sütunu 5 den oluşan array oluşturuyoruz (istenilen sayıda olabilir)
+
+array = np.eye(3) —> 3 e 3 matris oluşturup soldan başlayıp sağ çapraza kadar 1 koyuyor
+
+array = np.arrange(20) —> 0 dan 20 ye kadar satır matris oluşturuyor
+
+array = np.linspace(0, 10, 5) —> Başlangıç değer, bitiş değer, kaç elemanlı olacağı
+
+— Random Numbers — 
+
+array = np.random.random((3, 2)) —> 3 satır 2 sütunluk rastgele sayılar oluşturuyor (0 ile 1 arasında)
+
+array = np.random.randn(100) —> Normal sayılar
+
+array = np.random.randint(3, 10 , size=(3,3)) —> 3 e 3 lük bir matriste 3 ile 10 arasında rastgele sayılar oluştur
+
+array = np.random.choice(5, size=10) —> 0 ile 5 arasında rastgele 10 tane sayı oluştur
+
+— Linear Algebra —
+
+eigenvalues, eigenvectors = np.linalg.eig(array)
+
+eigenvectors —> Sütun vektörü
+
+print(np.allclose(b,c)) —> b ve c arrayleri birbirine yakınsa true değeri dönüyor
+
+— İçeri dosya aktarmak için —
+
+isim = np.loadtxt(’dosya_adi’, delimiter=”veri_hangi_işaretle_ayrılmış”, dtype=datanın_tipi) (np.genfromtxt)
